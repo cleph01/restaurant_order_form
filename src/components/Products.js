@@ -22,7 +22,7 @@ const Products = (props) => {
     // );
 
     // console.log(visibleCategories, "visible categories - Product.js");
-
+const[flip ,setFlip] = useState(false)
     const showProducts = (item, index) => {
         console.log(item, "Drop Arrow");
 
@@ -30,19 +30,21 @@ const Products = (props) => {
             <>
                 <div
                     key={index}
-                    style={{ display: "flex", flexDirection: "row" }}
+                    style={{ display: "flex", flexDirection: "row" ,justifyContent:"center",alignItems:"center",position:"relative"}}
                 >
-                    <ArrowDropDownIcon color="action" fontSize="large" />
-                    <div style={{ fontSize: "24px" }}>
+                    <ArrowDropDownIcon   onClick={()=>{  setFlip(false)}} color="action" fontSize="large" />
+                    <div  key={index} style={{ fontSize: "24px" ,margin:"2rem" }}>
                         {item.category.toUpperCase()}
                     </div>
-                    <div>
+                    <div  style={{ padding:"4rem" ,margin:"2rem", position:"relative",    top: "7rem",
+    left: "-12rem"}}>
                         {item.content.map((product, index) => {
                             return (
-                                <>
+                                <div  key={index} style={{  margin:"1rem",display:"flex", justifyContent:"space-evenly",alignItems:"flex-start"}}>
+                      
                                     <div>{product.name}</div>
                                     <div>{product.description}</div>
-                                </>
+                                </div>
                             );
                         })}
                     </div>
@@ -60,8 +62,8 @@ const Products = (props) => {
                     key={index}
                     style={{ display: "flex", flexDirection: "row" }}
                 >
-                    <ArrowRightIcon color="action" fontSize="large" />
-                    <div style={{ fontSize: "24px" }}>
+                    <ArrowRightIcon onClick={()=> setFlip(true)} color="action" fontSize="large" />
+                    <div key={item.category} style={{ fontSize: "24px" }}>
                         {item.category.toUpperCase()}
                     </div>
                 </div>
@@ -73,7 +75,7 @@ const Products = (props) => {
         <div>
             {props.products.map((item, index) => (
                 <div key={index}>
-                    {item.visible
+                    {flip
                         ? showProducts(item, index)
                         : noShowProducts(item, index)}
                 </div>
@@ -89,3 +91,4 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Products);
+/// if item catory eqaul item cataogory in map toggle
