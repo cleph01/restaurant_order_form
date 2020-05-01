@@ -1,5 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
+//Start Apollo imports
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
+//End Apollo imports
+
 //Start Redux imports
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { logger } from "redux-logger";
@@ -20,10 +26,24 @@ import * as serviceWorker from "./serviceWorker";
 
 const store = createStore(reducer, applyMiddleware(logger));
 
+const client = new ApolloClient({
+    uri: "http://localhost:8000/graphql",
+    request: (operation) => {
+        const token = "order-online-test-token";
+        operation.setContext({
+            headers: {
+                authorization: token ? `Bearer ${token}` : "",
+            },
+        });
+    },
+});
+
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+    <ApolloProvider client={client}>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </ApolloProvider>,
     document.getElementById("root")
 );
 

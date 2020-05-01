@@ -7,10 +7,10 @@ import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import "./color.css";
 const Container = styled.div`
-  margin: 20px 20px;
-  padding: 20px;
-  border-radius: 5px;
-  background: #fff;
+    margin: 20px 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background: #fff;
 `;
 
 // const Products = (props) => {
@@ -94,32 +94,48 @@ const Container = styled.div`
 /// if item catory eqaul item cataogory in map toggle
 
 const Products = (props) => {
-  console.log(props,"ll")
-  return (
-  <div className="nav">
+    console.log(props.productData, "product");
 
+    const productData = props.productData;
 
-   <div class="multi-level">
-   
-{ props.products.map(info => <div className="item">
-<input type="checkbox" style={{color:"black !important"}} id={info.category}/>
-<img src={arrow} class="arrow"/>
-<label htmlFor={info.category} >{info.category}</label>
-<ul>
-                    <li><a href="#">{info.content.map((data)=><div><h3>{data.name}</h3><h5>{data.description}</h5></div> )}</a></li>
-                    
-                </ul>
-</div> ) 
-}
-   </div>     
-  </div>
-  );
+    return (
+        <div className="nav">
+            <div className="multi-level">
+                {productData.map((info, index) => (
+                    <div key={index} className="item">
+                        <input
+                            type="checkbox"
+                            style={{ color: "black !important" }}
+                            id={info.category}
+                        />
+                        <img src={arrow} alt="arrow" className="arrow" />
+                        <label htmlFor={info.category}>{info.category}</label>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    {info.content.map((data, index) => (
+                                        <div key={index}>
+                                            <h3>{data.name}</h3>
+                                            <h5>{data.description}</h5>
+                                            <h5>{data.price}</h5>
+                                        </div>
+                                    ))}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        products: state.products,
-    };
-};
+// const mapStateToProps = (state) => {
+//     return {
+//         products: state.products,
+//     };
+// };
 
-export default connect(mapStateToProps)(Products);
+// export default connect(mapStateToProps)(Products);
+
+export default Products;

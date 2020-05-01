@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 
 import styled from "styled-components";
 
@@ -11,25 +10,23 @@ const Nav = styled.nav`
 `;
 
 const Header = (props) => {
-    console.log(props, "Header-Props");
-
+    console.log(props.businessData, "header props");
     return (
         <>
             <Nav>
-                <h3>{props.businessInfo.businessName}</h3>
+                <h3>{props.businessData.businessName}</h3>
                 <h5>
-                    {props.businessInfo.address} | {props.businessInfo.tel}
+                    {props.businessData.address} |{" "}
+                    {props.businessData.phoneNumber}
                 </h5>
-                <h5>{props.businessInfo.website}</h5>
+                <h5>
+                    {props.businessData.city}, {props.businessData.state}{" "}
+                    {props.businessData.zipCode}
+                </h5>
+                <h5>{props.businessData.website}</h5>
             </Nav>
         </>
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        businessInfo: state.businessInfo,
-    };
-};
-
-export default connect(mapStateToProps)(Header);
+export default Header;
