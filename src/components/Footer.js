@@ -1,7 +1,9 @@
 import React from "react";
 import GoogleMap from "./GoogleMap";
 import styled from "styled-components";
-import { connect } from "react-redux";
+
+
+import "../components/googleMap.css";
 
 const Container = styled.footer`
     margin-top: 20px;
@@ -14,30 +16,21 @@ const Container = styled.footer`
     justify-content: space-around;
 `;
 
-const MapWrapper = styled.div`
-    display: flex;
-`;
-
 const Footer = (props) => {
     return (
-        <Container>
+        <Container className="map">
             <GoogleMap />
 
             <div>
-                <h3>{props.businessInfo.businessName}</h3>
+                <h3>{props.businessData.businessName}</h3>
                 <h5>
-                    {props.businessInfo.address} | {props.businessInfo.tel}
+                    {props.businessData.address} |{" "}
+                    {props.businessData.phoneNumber}
                 </h5>
-                <h5>{props.businessInfo.website}</h5>
+                <h5>{props.businessData.website}</h5>
             </div>
         </Container>
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        businessInfo: state.businessInfo,
-    };
-};
-
-export default connect(mapStateToProps, {})(Footer);
+export default Footer;

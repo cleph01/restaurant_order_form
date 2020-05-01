@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 //Start Components
 import Header from "./Header";
@@ -9,8 +9,6 @@ import Footer from "./Footer";
 //End Components
 
 import styled from "styled-components";
-
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Container = styled.div`
     background: #ededed;
@@ -27,9 +25,6 @@ const Home = (props) => {
     let category_array = [];
     //Array to Hold Product Object List
     let productObj_array = [];
-    //Map Object to Hold Prodect List as key Value Pair
-
-    console.log(menuItems, "menu items");
 
     // Loops Menu Items and adds category to array
     for (let i = 0; i < menuItems.length; i++) {
@@ -38,14 +33,14 @@ const Home = (props) => {
         }
     }
 
-    //Loops Category Array 
+    //Outter Loop - Loops Category Array
     for (let i = 0; i < category_array.length; i++) {
         let temp_object = {};
         let temp_array = [];
 
         const category = category_array[i];
 
-        //Loops  Menu Items according to category
+        //Inner Loop - Loops  Menu Items according to category
         for (let x = 0; x < menuItems.length; x++) {
             if (category === menuItems[x].category) {
                 temp_array.push({
@@ -70,7 +65,7 @@ const Home = (props) => {
                 <ShoppingCart />
                 <Message />
                 <Products productData={productObj_array} />
-                <Footer />
+                <Footer businessData={businessData} />
             </Container>
         </>
     );
