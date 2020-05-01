@@ -79,8 +79,7 @@ export function reducer(state = initialState, action) {
         case FETCH_BUSINESS_DATA_SUCCESS:
             return {
                 ...state,
-                isLoading: false,
-                image: action.payload,
+                items: action.payload,
             };
 
         case FETCH_BUSINESS_DATA_ERROR:

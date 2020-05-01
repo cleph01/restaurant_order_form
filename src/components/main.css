@@ -1,5 +1,6 @@
 /*Global*/
-html, body {
+html,
+body {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -8,10 +9,13 @@ html, body {
 
 /*Func*/
 
-.multi-level, .item ul, .nav input[type="checkbox"] {
+.multi-level,
+.item ul,
+.nav input[type="checkbox"] {
     display: none;
 }
-#menu:checked ~ .multi-level, .item input:checked ~ ul {
+#menu:checked ~ .multi-level,
+.item input:checked ~ ul {
     display: block;
 }
 
@@ -34,8 +38,6 @@ html, body {
     transition: 0.1s;
 }
 
-
-
 /*Styles*/
 
 label:hover {
@@ -51,7 +53,7 @@ label {
     width: 100%;
     background-color: white;
     overflow-x: hidden;
-    border-bottom: 1px solid #CFD8DC;
+    border-bottom: 1px solid #cfd8dc;
 }
 
 #nav-icon {
@@ -59,16 +61,18 @@ label {
     line-height: 50px;
     padding-left: 1em;
     color: white;
-    background-color: #F44336;
+    background-color: #f44336;
 }
 
-.nav ul, .nav li, label {
+.nav ul,
+.nav li,
+label {
     line-height: 50px;
     margin: 0;
     padding: 0 2em;
     list-style: none;
     text-decoration: none;
-    color: #90A4AE;
+    color: #90a4ae;
     font-weight: 100;
     width: 100%;
 }
@@ -76,20 +80,11 @@ label {
     padding: 0 0.25em;
 }
 .nav li a {
-    line-height: 50px;
+    /* line-height: 50px; */
     margin: 0;
     padding: 0 4em;
     list-style: none;
     text-decoration: none;
-    color: #90A4AE;
+    color: #90a4ae;
     font-weight: 100;
 }
-
-
-
-
-
-
-
-
-
