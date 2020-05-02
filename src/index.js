@@ -26,8 +26,8 @@ import * as serviceWorker from "./serviceWorker";
 
 const store = createStore(reducer, applyMiddleware(logger));
 
-const client = new ApolloClient({
-    uri: process.env.API_ENDPOINT,
+export const client = new ApolloClient({
+    uri: "https://socialiite-api-staging.herokuapp.com/",
     request: (operation) => {
         const token = "order-online-test-token";
         operation.setContext({
@@ -36,6 +36,7 @@ const client = new ApolloClient({
             },
         });
     },
+    playground: true,
 });
 
 ReactDOM.render(
