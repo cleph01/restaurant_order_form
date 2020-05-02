@@ -1,4 +1,3 @@
-
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -28,7 +27,7 @@ import * as serviceWorker from "./serviceWorker";
 const store = createStore(reducer, applyMiddleware(logger));
 
 const client = new ApolloClient({
-    uri: "http://localhost:8000/graphql",
+    uri: process.env.API_ENDPOINT,
     request: (operation) => {
         const token = "order-online-test-token";
         operation.setContext({
