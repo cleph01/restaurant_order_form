@@ -94,32 +94,59 @@ const Container = styled.div`
 /// if item catory eqaul item cataogory in map toggle
 
 const Products = (props) => {
-  console.log(props,"ll")
+  const [pop, setPop]= useState(false)
+  console.log(props, "ll");
   return (
-  <div className="nav">
+    <div className="nav">
+      <div class="multi-level">
+        {props.products.map((info) => (
+          <div className="item">
+            <input
+              type="checkbox"
+              style={{ color: "black !important" }}
+              id={info.category}
+            />
+            <img src={arrow} class="arrow" />
+            <label htmlFor={info.category}>{info.category}</label>
+            <ul className="product__list">
+              <li>
+                <a href="#">
+                  {info.content.map((data) => (
+                    <div onClick={()=>{localStorage.setItem('title', data.name);localStorage.setItem('price', data.price);setPop(true)}} className="product__item">
+                    <div className="product__box">
+                  
+                      <h3 className="product__item--des">{data.name}</h3>
+                      <h5>{data.description}</h5>
+                      <h6>price</h6></div>
+                      <img className="product__img" alt="jj" src="https://images.all-free-download.com/images/graphicthumb/food_picture_01_hd_pictures_167558.jpg"/>
 
-
-   <div class="multi-level">
-   
-{ props.products.map(info => <div className="item">
-<input type="checkbox" style={{color:"black !important"}} id={info.category}/>
-<img src={arrow} class="arrow"/>
-<label htmlFor={info.category} >{info.category}</label>
-<ul>
-                    <li><a href="#">{info.content.map((data)=><div><h3>{data.name}</h3><h5>{data.description}</h5></div> )}</a></li>
-                    
-                </ul>
-</div> ) 
-}
-   </div>     
-  </div>
+                  
+                    </div>
+                  ))}
+                </a>
+              </li>
+            </ul>
+          </div>
+        ))}
+      </div>    <div className={ pop ? "popup " :"u-display-none"}>
+      <div className="popup_box">
+      
+              <h1 className="popup_box__title">
+{localStorage.getItem('title')} <span onClick={()=>{ setPop(false)} } className="close">+</span>
+              </h1>
+<img src={localStorage.getItem('img')} alt="img"/>
+            Price: <h4 className="popup_box__title">
+{localStorage.getItem('price')}
+              </h4>
+                      </div></div>
+    </div>
   );
 };
 
 const mapStateToProps = (state) => {
-    return {
-        products: state.products,
-    };
+  return {
+    products: state.products,
+  };
 };
 
 export default connect(mapStateToProps)(Products);
