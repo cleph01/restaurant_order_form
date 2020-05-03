@@ -181,4 +181,5 @@ display: none !important;
 .close{
   font-weight: 300;
   transform: rotate(-136deg);
+  cursor: pointer;
 }
