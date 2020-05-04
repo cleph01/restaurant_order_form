@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 
 //Start Components
 import Header from "./Header";
@@ -14,6 +14,8 @@ const Container = styled.div`
     background: #ededed;
 `;
 
+
+
 const Home = (props) => {
     //Save menuItems from Props to Variable
     let menuItems = props.businessData.menuItems;
@@ -26,8 +28,11 @@ const Home = (props) => {
     //Array to Hold Product Object List
     let productObj_array = [];
 
+    
+
+
     // Loops Menu Items and adds category to array
-    for (let i = 0; i < menuItems.length; i++) {
+     for (let i = 0; i < menuItems.length; i++) {
         if (!category_array.includes(menuItems[i].category)) {
             category_array.push(menuItems[i].category);
         }
@@ -56,15 +61,14 @@ const Home = (props) => {
         productObj_array.push(temp_object);
     }
 
-    console.log(productObj_array, "Product Object Array");
 
-    return (
+    return menuItems.length > 0 && (
         <>
             <Container>
                 <Header businessData={businessData} />
-                <ShoppingCart />
+                
                 <Message />
-                <Products productData={productObj_array} />
+                <Products productData={productObj_array}  />
                 <Footer businessData={businessData} />
             </Container>
         </>

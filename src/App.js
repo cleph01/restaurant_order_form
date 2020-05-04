@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Home from "./components/Home";
 
 import { useQuery } from "@apollo/react-hooks";
@@ -8,7 +8,8 @@ import { getBusinessInfo } from "./queries/queries";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function App() {
-    function ShowApp() {
+    function ShowApp(props) {
+      
         const { loading, error, data } = useQuery(getBusinessInfo, {
             variables: { businessId: 1 },
         });
@@ -17,7 +18,7 @@ function App() {
 
         if (error) return <p>Error ... {error}</p>;
 
-        return <Home businessData={data.getBusinessInfo} />;
+        return <Home  businessData={data.getBusinessInfo} />;
     }
 
     return <>{ShowApp()}</>;

@@ -183,3 +183,16 @@ display: none !important;
   transform: rotate(-136deg);
   cursor: pointer;
 }
+
+
+.cart-btn{
+color:rgb(41, 41, 29);
+  border: 1px solid rgb(207, 153, 109);
+  background-color: transparent;
+  padding: .5rem 1rem;
+}
+
+.cart-btn:hover{
+  color:rgb(148, 148, 44);
+  border: 1px solid rgb(148, 148, 44);
+}
