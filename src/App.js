@@ -1,26 +1,37 @@
 import React from "react";
 import Home from "./components/Home";
 
-import { useQuery } from "@apollo/react-hooks";
+import { graphql } from "react-apollo";
 
 import { getBusinessInfo } from "./queries/queries";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-function App() {
+function App(props) {
+    
     function ShowApp() {
-        const { loading, error, data } = useQuery(getBusinessInfo, {
-            variables: { businessId: 1 },
-        });
+        
+        const { getBusinessInfo } = props.data;
 
-        if (loading) return <CircularProgress />;
-
-        if (error) return <p>Error ... {error}</p>;
-
-        return <Home businessData={data.getBusinessInfo} />;
+        if (getBusinessInfo) {
+            return <Home businessData={getBusinessInfo} />;
+        } else {
+            return <CircularProgress />;
+        }
     }
+
+    console.log(props, "app props");
 
     return <>{ShowApp()}</>;
 }
 
-export default App;
+
+export default graphql(getBusinessInfo, {
+    options: (props) => {
+        return {
+            variables: {
+                businessId: 1,
+            },
+        };
+    },
+})(App);

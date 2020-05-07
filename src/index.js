@@ -26,8 +26,10 @@ import * as serviceWorker from "./serviceWorker";
 
 const store = createStore(reducer, applyMiddleware(logger));
 
+//https://socialiite-api-staging.herokuapp.com/graphql
+
 export const client = new ApolloClient({
-    uri: "https://socialiite-api-staging.herokuapp.com/graphql",
+    uri: "http://localhost:8000",
     request: (operation) => {
         const token = "order-online-test-token";
         operation.setContext({

@@ -2,6 +2,9 @@ import React from "react";
 import GoogleMap from "./GoogleMap";
 import styled from "styled-components";
 
+import { graphql } from "react-apollo";
+
+import { getBusinessInfo } from "../queries/queries";
 
 import "../components/googleMap.css";
 
@@ -17,20 +20,40 @@ const Container = styled.footer`
 `;
 
 const Footer = (props) => {
-    return (
-        <Container className="map">
-            <GoogleMap />
+    function ShowFooter() {
+        const { getBusinessInfo } = props.data;
 
-            <div>
-                <h3>{props.businessData.businessName}</h3>
-                <h5>
-                    {props.businessData.address} |{" "}
-                    {props.businessData.phoneNumber}
-                </h5>
-                <h5>{props.businessData.website}</h5>
-            </div>
-        </Container>
-    );
+        if (getBusinessInfo) {
+            return (
+                <>
+                    <GoogleMap />
+
+                    <div>
+                        <h3>{props.businessData.businessName}</h3>
+                        <h5>
+                            {props.businessData.address} |{" "}
+                            {props.businessData.phoneNumber}
+                        </h5>
+                        <h5>{props.businessData.website}</h5>
+                    </div>
+                </>
+            );
+        } else {
+            return <div>Loading...</div>;
+        }
+    }
+
+    console.log(props, "footer props");
+
+    return <Container className="map">{ShowFooter()}</Container>;
 };
 
-export default Footer;
+export default graphql(getBusinessInfo, {
+    options: (props) => {
+        return {
+            variables: {
+                businessId: 1,
+            },
+        };
+    },
+})(Footer);
