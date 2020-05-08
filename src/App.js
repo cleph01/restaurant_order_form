@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Home from "./components/Home";
 
 import { graphql } from "react-apollo";
@@ -8,9 +8,7 @@ import { getBusinessInfo } from "./queries/queries";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 function App(props) {
-    
     function ShowApp() {
-        
         const { getBusinessInfo } = props.data;
 
         if (getBusinessInfo) {
@@ -24,7 +22,6 @@ function App(props) {
 
     return <>{ShowApp()}</>;
 }
-
 
 export default graphql(getBusinessInfo, {
     options: (props) => {

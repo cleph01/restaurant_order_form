@@ -5,6 +5,7 @@ import {
 } from "../actions/BusinessData";
 
 const initialState = {
+    cart:[],
     businessInfo: {
         businessName: "Mecha Noodle Bar",
         address: "116 Washington Street",
@@ -88,7 +89,19 @@ export function reducer(state = initialState, action) {
                 isLoading: false,
                 error: action.payload,
             };
-
+            // case START_CART:
+            //     return {
+            //         ...state,
+            //         items: action.payload,
+            //     }; case CART_SUCCESS:
+            //     return {
+            //         ...state,
+            //         items: action.payload,
+            //     }; case CART_ERROR:
+            //     return {
+            //         ...state,
+            //         items: action.payload,
+            //     };
         default:
             state.products.map((item) => (item.visible = true));
 
